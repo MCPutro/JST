@@ -8,7 +8,6 @@ package jst;
 import java.text.DecimalFormat;
 import java.util.*;
 
-
 /**
  *
  * @author Mu'ti C Putro
@@ -65,7 +64,7 @@ public class percobaan1 {
     private ArrayList<Double> db4 = new ArrayList<>();
 
     private ArrayList<Double> mse = new ArrayList<>();
-    
+
     private bacafile bf;
     private double alpha;
 
@@ -216,7 +215,7 @@ public class percobaan1 {
 //                err.get(err.size() - 1) * y.get(y.size() - 1)
 //                * (1 - y.get(y.size() - 1)) * alpha);
         addErrDelta(0);
-
+        hitungMSE();
     }
 
     public double randomRang(double min, double max) {
@@ -225,9 +224,7 @@ public class percobaan1 {
     }
 
     public void loop(int iterasi) {
-        
         for (int i = 1; i < iterasi; i++) {
-//            System.out.println(i%16+" <<");
             addWV();
             addU123(i%16);
             addZ();
@@ -237,7 +234,25 @@ public class percobaan1 {
         hitungMSE();
     }
     
-    
+    public void loop(double target) {
+        int i = 1;
+        while (true) {
+//        for (; i < iterasi; i++) {
+            mse.clear();
+            addWV();
+            addU123(i % 16);
+            addZ();
+            addU4Y();
+            addErrDelta(i % 16);
+            if (i % 16 == 15) {
+                hitungMSE();
+                if (mse.get(mse.size() - 1) <= target) {
+                    break;
+                }
+            }
+            i++;
+        }
+    }
 
     public void addWV() {//untuk iterasi ke 2 dari 1 start
         this.w11.add(desimal(w11.get(w11.size() - 1) + dw11.get(dw11.size() - 1)));
@@ -391,20 +406,17 @@ public class percobaan1 {
                 * (1 - y.get(y.size() - 1)) * alpha));
     }
 
-    public void hitungMSE(){
+    public void hitungMSE() {
         double d = 0;
-        for (int i = 0; i < err.size(); i++) {            
-//            System.out.println(i+" "+err.get(i));
-            d += Math.pow(err.get(i),2);
-            if(i%16 == 15 && i!= 0){
-                this.mse.add(d/16);
-//                System.out.println(d/16);
-//                System.out.println("xxx");
-                d=0;
+        for (int i = 0; i < err.size(); i++) {
+            d += Math.pow(err.get(i), 2);
+            if (i % 16 == 15 && i != 0) {
+                this.mse.add(d / 16);
+                d = 0;
             }
         }
     }
-    
+
     public ArrayList<Double> getErr() {
         return err;
     }
@@ -413,12 +425,11 @@ public class percobaan1 {
         return mse;
     }
 
-    public double desimal(double angka){
+    public double desimal(double angka) {
         DecimalFormat df = new DecimalFormat(".####");
         return Double.valueOf(df.format(angka));
     }
-    
-    
+
     @Override
     public String toString() {
         return "percobaan1{" + "\nw11 = " + w11
