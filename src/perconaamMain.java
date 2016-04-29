@@ -15,9 +15,9 @@ import jst.percobaan1;
 public class perconaamMain {
     public static void main(String[] args) {
         percobaan1 p1 = new percobaan1();
-        p1.loop(32+16);
-        System.out.println(p1);
-        System.out.println(p1.getMse());
+        p1.loop(32+16+16);
+        System.out.println(p1);//manampilkan data yang diperoleh
+        System.out.println("MSE : "+p1.getMse());//manampilkan mse
         
 //        double d = 0;
 //        

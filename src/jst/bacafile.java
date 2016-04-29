@@ -122,9 +122,9 @@ public class bacafile {
         }    
     }
     
-    public static void main(String[] args) {
-        bacafile bf = new bacafile();
-        bf.output();
-
-    }
+//    public static void main(String[] args) {
+//        bacafile bf = new bacafile();
+//        bf.output();
+//
+//    }
 }
