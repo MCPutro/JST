@@ -19,17 +19,21 @@ public class bacafile {
     private ArrayList<double[]> temp = new ArrayList<>();
     private ArrayList<int[]> listData = new ArrayList<>();
 
-    public static int[][] input = {{0, 0, 0, 0, 0}, {0, 0, 0, 1, 0}, {0, 0, 1, 0, 0}, {0, 0, 1, 1, 0}, {0, 1, 0, 0, 0}, {0, 1, 0, 1, 0}, {0, 1, 1, 0, 0}, {0, 1, 1, 1, 0}, {1, 0, 0, 0, 0}, {1, 0, 0, 1, 0}, {1, 0, 1, 0, 0}, {1, 0, 1, 1, 0}, {1, 1, 0, 0, 0}, {1, 1, 0, 1, 0}, {1, 1, 1, 0, 0}, {1, 1, 1, 1, 0}};
+    private int[][] input = {{0, 0, 0, 0, 0}, {0, 0, 0, 1, 0}, {0, 0, 1, 0, 0}, {0, 0, 1, 1, 0}, {0, 1, 0, 0, 0}, {0, 1, 0, 1, 0}, {0, 1, 1, 0, 0}, {0, 1, 1, 1, 0}, {1, 0, 0, 0, 0}, {1, 0, 0, 1, 0}, {1, 0, 1, 0, 0}, {1, 0, 1, 1, 0}, {1, 1, 0, 0, 0}, {1, 1, 0, 1, 0}, {1, 1, 1, 0, 0}, {1, 1, 1, 1, 0}};
 
-    public bacafile() {
-        bacaFile();
+    public bacafile(String s) {
+        bacaFile(s);
         convert();
         cekcek();
     }
+
+    public int[][] getInput() {
+        return input;
+    }
     
-    public void bacaFile() {
+    public void bacaFile(String path) {
         try {
-            DataInputStream dis = new DataInputStream(new FileInputStream("D:\\data.txt"));
+            DataInputStream dis = new DataInputStream(new FileInputStream(path));
             String pointer;
             while ((pointer = dis.readLine()) != null) {
                 String[] s = pointer.split("\t");

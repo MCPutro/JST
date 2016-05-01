@@ -21,5 +21,9 @@ public class perconaamMain {
         System.out.println("MSE : "+p1.getMse());//manampilkan mse
         System.out.println(p1.getMse().size());
 
+        
+        percobaan1.TestTing p = p1.new TestTing();
+        p.runTest();
+        System.out.println(p);
     }
 }
